@@ -16,9 +16,9 @@
     "noImplicitOverride": true,
 
     /* If transpiling with TypeScript: */
-    "module": "NodeNext",
-    "outDir": "dist",
-    "rootDir": "src",
+    "module": "NodeNext",                         // ใช้กับเวอร์ชันใหม่ๆ
+    "outDir": "dist",                             // set
+    "rootDir": "src",                             // set
     "sourceMap": true,
 
     /* If your code doesn't run in the DOM: */

@@ -4,6 +4,11 @@ import express, {
   type Response,
 } from "express";
 
+// pnpm i morgan
+// pnpm i -D @types/morgan <- devDependencies
+import morgan from "morgan";
+// เอามันมาใช้
+
 // import database
 import { students } from "./db/db.js";
 import {
@@ -16,10 +21,15 @@ import type { Student } from "./libs/types.js";
 const app = express();
 const port = 3000;
 
+// morgan middlewares
+//app.use(morgan("dev"));
+app.use(morgan("combined"));
+
 // middlewares
 app.use(express.json());
 
-// Endpoints
+// Endpoints route handlers
+// GET /
 app.get("/", (req: Request, res: Response) => {
   res.send("API services for Student Data");
 });
@@ -34,18 +44,18 @@ app.get("/students", (req: Request, res: Response) => {
       let filtered_students = students.filter(
         (student) => student.program === program
       );
-      return res.json({
+      return res.status(201).json({
         success: true,
         data: filtered_students,
       });
     } else {
-      return res.json({
+      return res.status(201).json({
         success: true,
         data: students,
       });
     }
   } catch (err) {
-    return res.json({
+    return res.status(500).json({
       success: false,
       message: "Something is wrong, please try again",
       error: err,
@@ -73,7 +83,7 @@ app.post("/students", (req: Request, res: Response) => {
       (student) => student.studentId === body.studentId
     );
     if (found) {
-      return res.json({
+      return res.status(409).json({
         success: false,
         message: "Student is already exists",
       });
@@ -86,7 +96,7 @@ app.post("/students", (req: Request, res: Response) => {
     // add response header 'Link'
     res.set("Link", `/students/${new_student.studentId}`);
 
-    return res.json({
+    return res.status(201).json({
       success: true,
       data: new_student,
     });

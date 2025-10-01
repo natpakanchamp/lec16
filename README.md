@@ -9,3 +9,8 @@ Please download `Insomnia` app an install in your PC. This a tool for testing yo
 Instructions:
 
 - [https://gist.github.com/potikanond/a3f8cb6d80258dce175fb4b95aef94d0](https://gist.github.com/potikanond/a3f8cb6d80258dce175fb4b95aef94d0)
+
+# pnpm install
+
+# tsconfig *สำคัญ* : เวลาจะสร้างเป็นแอพ จะกำหนดอะไรยังไง ต้องแก้ไข
+# แก้ไข package.json
